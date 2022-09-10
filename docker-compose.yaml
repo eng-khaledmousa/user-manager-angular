@@ -1,0 +1,8 @@
+services:
+  user-manager-ui:
+    build: .
+    ports:
+      - "4200:4200"
+    volumes:
+       - ./:/app
+    image: "engkhaledmousa/user-manager-ui:latest"
