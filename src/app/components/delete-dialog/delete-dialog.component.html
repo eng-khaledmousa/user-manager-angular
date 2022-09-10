@@ -1,0 +1,17 @@
+<h1>Confirm delete user!</h1>
+<div matDialogContent>
+  <h3>Are you sure you want to delete the user</h3>
+  <div mat-dialog-action [align]="'end'">
+    <button style="margin: 5px" mat-raised-button color="warn" mat-dialog-close>
+      close
+    </button>
+    <button
+      style="margin: 5px"
+      mat-raised-button
+      color="primary"
+      (click)="deleteUser()"
+    >
+      Delete
+    </button>
+  </div>
+</div>

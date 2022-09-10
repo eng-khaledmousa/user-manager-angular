@@ -1,0 +1,8 @@
+<app-navbar (onOpenCreateDialog)="openCreateDialog()"></app-navbar>
+<app-table
+  class="app-table"
+  (onEditUser)="editUser($event)"
+  (onGetUsers)="getUsers()"
+  (onDeleteUser)="deleteUser($event)"
+  [users]="users"
+></app-table>

@@ -1,0 +1,106 @@
+<h1>Create New User</h1>
+<div matDialogContent>
+  <form [formGroup]="userForm">
+    <mat-form-field appearance="legacy">
+      <mat-label>Username</mat-label>
+      <input
+        formControlName="username"
+        matInput
+        placeholder="Username"
+        (ngModelChange)="checkUser()"
+      />
+    </mat-form-field>
+    <div *ngIf="username?.errors">
+      <div *ngIf="username?.errors?.['minlength']">
+        <p style="color: red">
+          Username length must be between 4 and 12 characters.
+        </p>
+      </div>
+      <div *ngIf="username?.errors?.['exist']">
+        <p style="color: red">Username already exists.</p>
+      </div>
+    </div>
+    <div *ngIf="!username?.errors">
+      <div *ngIf="!username?.errors?.['exist']">
+        <p style="color: green">Username is available.</p>
+      </div>
+    </div>
+    <mat-form-field appearance="legacy">
+      <mat-label>Password</mat-label>
+      <input
+        type="password"
+        formControlName="password"
+        matInput
+        placeholder="Password"
+      />
+    </mat-form-field>
+    <div *ngIf="password?.errors">
+      <div *ngIf="password?.errors?.['pattern']">
+        <p style="color: red">Password is very weak</p>
+      </div>
+    </div>
+    <mat-form-field appearance="legacy">
+      <mat-label>First Name</mat-label>
+      <input formControlName="firstname" matInput placeholder="First Name" />
+    </mat-form-field>
+    <div *ngIf="firstname?.errors">
+      <div *ngIf="firstname?.errors?.['minlength']">
+        <p style="color: red">First Name must be at least 5 characters long.</p>
+      </div>
+    </div>
+    <mat-form-field appearance="legacy">
+      <mat-label>Last Name</mat-label>
+      <input formControlName="lastname" matInput placeholder="Last Name" />
+    </mat-form-field>
+    <div *ngIf="lastname?.errors">
+      <div *ngIf="lastname?.errors?.['minlength']">
+        <p style="color: red">Last Name must be at least 5 characters long.</p>
+      </div>
+    </div>
+    <mat-form-field appearance="legacy">
+      <mat-label>Phone Number</mat-label>
+      <input
+        formControlName="phonenumber"
+        matInput
+        placeholder="Phone Number"
+      />
+    </mat-form-field>
+    <div *ngIf="phonenumber?.errors">
+      <div *ngIf="phonenumber?.errors?.['pattern']">
+        <p style="color: red">Phone numer is invalid.</p>
+      </div>
+    </div>
+    <mat-form-field appearance="legacy">
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput placeholder="Email" />
+    </mat-form-field>
+    <div *ngIf="email?.errors">
+      <div *ngIf="email?.errors?.['pattern']">
+        <p style="color: red">Email is invalid.</p>
+      </div>
+    </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a department</mat-label>
+      <mat-select formControlName="department">
+        <mat-option *ngFor="let dep of departments" value="{{ dep.name }}">{{
+          dep.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <mat-label style="color: red">{{ error }}</mat-label>
+  <div mat-dialog-action [align]="'end'">
+    <button style="margin: 5px" mat-raised-button color="warn" mat-dialog-close>
+      close
+    </button>
+    <button
+      style="margin: 5px"
+      mat-raised-button
+      color="primary"
+      [disabled]="!userForm.valid"
+      (click)="saveUser()"
+    >
+      Save
+    </button>
+  </div>
+</div>
